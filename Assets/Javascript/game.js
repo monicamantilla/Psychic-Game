@@ -24,23 +24,35 @@
 
                var computerGuess = letters[Math.floor(Math.random() * letters.length)];
 
+               if(userGuess === computerGuess){
+                  wins++;
+              }else{
+                  guesses--;
+              }
+          
+              if(guesses = 0){
+                  losses++
+              }
+          }   
+           
+
                //var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
                //var computerGuess = letters[Math.floor(Math.random()*letter.lenth)];
             }
 
 
-            if (userGuess === computerGuess)
+         //    if (userGuess === computerGuess))
 
-            if(letters.indexOf(userGuess) > -1){
-            wins++;
-            Guessesleft = 8;
-            Guesses_so_far = []
+         //    if(letters.indexOf(userGuess) > -1){
+         //    wins++;
+         //    Guessesleft = 8;
+         //    Guesses_so_far = []
 
-         } else {
-            losses++;
+         // } else {
+         //    losses++;
           
-				}
+			// 	}
             
             var html = "<p> Guess what letter I am thinking of</p>" + directions-text +  "<p>Wins: " + wins + "</p>"
             + "<p>Losses: " + losses + "</p>" + "<p>Guesses Left: " + Guessesleft + "</p>" 

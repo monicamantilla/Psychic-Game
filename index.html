@@ -3,22 +3,72 @@
     <meta charset="UTF-8">
 
     <title>Psychic Game</title>
-    <script type="text/javascript" src="./Assets/Javascript/game.js"></script>
       
     </script>
 </head>
 <body>
+
         <div id= "game"></div>
-             <h1>The Psychic Game</h1>
          </div>    
-        <p id="directions-text">Guess What letter I'm thinking of..</p>
-        <p id="userGuess"></p>
+      
+        <!-- <p id="userGuess"></p>
         <p id="computerGuess"></p>
         <p id="wins"></p>
         <p id="losses"></p>
         <p id="Guessesleft"></p>
-        <p id="Guesses_so_far"></p>
-       
+        <p id="Guesses_so_far"></p> -->
+
+ <script type="text/javascript">
+
+    var letters = ["a", "b", "c", "d", "e", "f", "h,", "i", "j", "k", "l", "m", 
+                "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "y", "z"];
+    var wins = 0,
+        losses = 0,
+        Guessesleft = 8,
+        Guesses_so_far = 0
+
+    // var directions = document.getElementById("directions-text");
+    // var userGuess = document.getElementById("userGuess");
+    // var computerGuess = document.getElementById("computerGuess");
+    // var wins = document.getElementById("wins");
+    // var losses = document.getElementById("losses");
+    // var guessesleft = document.getElementById("guessesleft");
+
+    document.onkeyup = function() {
+              
+    var userGuess = String.fromCharCode(event.keycode);
+
+    var computerGuess = letters[Math.floor(Math.random() * letters.length)];
+
+    if(userGuess === computerGuess){
+        wins++;
+
+    }else{
+        Guesses_so_far= [];
+    }
+
+    if(Guessesleft = 0){
+        losses++
+    }
+
+ 
+
+    var html = "<h1>The Psychic Game</h1>" + "<p> Guess what letter I am thinking of</p>"  +  "<p>Wins: " + wins + "</p>"
+            + "<p>Losses: " + losses + "</p>" + "<p>Guesses Left: " + Guessesleft + "</p>" 
+            + "<p>Guesses So far: " + Guesses_so_far + "</p>";
+
+    document.querySelector("#game").innerHTML = html; 
+
+    }    
+
+            
+    // userGuess.textContent = "You chose: " + userGuess;
+    //     computerGuess.textContent = "The computer chose: " + computerGuess;
+    //     wins.textContent = "wins: " + wins;
+    //     losses.textContent = "losses: " + losses;
+    //     Guesses_so_far.textContent = "Guesses so far: " + Guesses_so_far;
+ 
+</script>
 
 </body>
 
