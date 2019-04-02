@@ -1,69 +1,54 @@
+var letters = ["a", "b", "c", "d", "e", "f", "h,", "i", "j", "k", "l", "m", 
+"n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "y", "z"],
+computerGuess,
+wins = 0,
+losses = 0,
+Guessesleft = 8,
+Guesses_so_far = [];
 
-        
-        
+function newGame(){
+   Guessesleft = 8;
+   Guesses_so_far = [];
 
-            var letters = ["a", "b", "c", "d", "e", "f", "h,", "i", "j", "k", "l", "m", 
-            "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "y", "z"];
+   document.getElementById("Guessesleft").textContent = Guessesleft;
+   document.getElementById("Guesses_so_far").textContent = ''
 
-            var wins = 0,
-            losses = 0,
-            Guessesleft = 8,
-            Guesses_so_far = 0
-            
-             // Create variables that hold references to the places in the HTML where we want to display things.
-            var directionsText = document.getElementById("directions-text");
-            var userGuessText = document.getElementById("userGuess");
-            var computerChoiceText = document.getElementById("computerGuess");
-            var winsText = document.getElementById("wins");
-            var lossesText = document.getElementById("losses");
-            var guessesleft = document.getElementById("guessesleft");
+   computerGuess = letters[Math.floor(Math.random() * letters.length)];
+}
 
-            document.onkeyup = function() {
-              
-               var userGuess = event.key;
+computerGuess = letters[Math.floor(Math.random() * letters.length)];
 
-               var computerGuess = letters[Math.floor(Math.random() * letters.length)];
+document.onkeyup = function(event) {
 
-               if(userGuess === computerGuess){
-                  wins++;
-              }else{
-                  guesses--;
-              }
-          
-              if(guesses = 0){
-                  losses++
-              }
-          }   
-           
+   var userGuess = event.key.toLowerCase();
 
-               //var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+   if(!Guesses_so_far.includes(userGuess)) {
+      if(userGuess == computerGuess){
+         wins++;
 
-               //var computerGuess = letters[Math.floor(Math.random()*letter.lenth)];
-            }
+         document.getElementById("wins").textContent = wins;
+
+         newGame();
+
+      } else {
+         Guessesleft--
 
 
-         //    if (userGuess === computerGuess))
+         if (Guessesleft == 0) {
+            losses++;
 
-         //    if(letters.indexOf(userGuess) > -1){
-         //    wins++;
-         //    Guessesleft = 8;
-         //    Guesses_so_far = []
+            document.getElementById("losses").textContent = losses;
 
-         // } else {
-         //    losses++;
-          
-			// 	}
-            
-            var html = "<p> Guess what letter I am thinking of</p>" + directions-text +  "<p>Wins: " + wins + "</p>"
-            + "<p>Losses: " + losses + "</p>" + "<p>Guesses Left: " + Guessesleft + "</p>" 
-            + "<p>Guesses So far: " + Guesses_so_far + "</p>"
+            newGame();
 
-            document.querySelector("#game").innerHTML = html;
+         } else {
 
-// user types letter from the alphabet in array     
-//simultaneously computer chooses a random letter from the array
-//if the guesses are equal then increment var wins
-//if the user guess does not equal computer guess then decrease their guessesleft check if its 0, if its 0 then lost
-//record that letter next to "Guesses_so_far"
-//after 8 attempts, increment var losses by 1
+            Guesses_so_far.push(userGuess);
 
+            document.getElementById("Guesses_so_far").textContent = Guesses_so_far;
+            document.getElementById("Guessesleft").textContent = Guessesleft;
+
+         }
+      }
+   }
+}
